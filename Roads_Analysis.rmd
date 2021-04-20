@@ -1,0 +1,30 @@
+---
+title: "CalTrans Roads Analysis"
+author: "Skyler Elmstrom"
+date: "4/20/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = T, message=F, warning=F)
+```
+
+## Basic Total Road Length
+```{r results = 'hide'}
+library(sf)
+library(IETC)
+library(tidyverse)
+
+# Load Risk Regions
+SFB.riskregions.z <- "https://github.com/NSF-Microplastics-Project/Risk_Region.shapefile/raw/main/Data/SFB_RiskRegions_20210304_SP.zip"
+SFB.riskregions <- IETC::unzipShape(SFB.riskregions.z) # loads GitHub shapefile as an sf object
+
+# Load Summary Table from ArcGIS Export
+RoadSummary <- read_csv("Data/SFBRoadsSummary_20210420.csv") %>% # Road length summary from ArcGIS model
+  rename(len_km = SUM_Shape_Length) %>% # change name of km length column
+  mutate(len_mi = len_km*0.621371) # add miles column
+```
+
+```{r}
+RoadSummary
+```
