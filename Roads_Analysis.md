@@ -9,12 +9,11 @@ output:
     keep_md: true
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = T, message=F, warning=F)
-```
+
 
 ## Basic Total Road Length
-```{r results = 'hide'}
+
+```r
 library(sf)
 library(IETC)
 library(tidyverse)
@@ -29,10 +28,22 @@ RoadSummary <- read_csv("Data/ArcGIS_SFBRoadsSummary_20210420.csv") %>% # Road l
   mutate(len_mi = len_km*0.621371) # add miles column
 ```
 
-```{r}
+
+```r
 RoadSummary
 ```
 
-```{r}
+```
+## # A tibble: 4 x 4
+##    OID_ name              len_km len_mi
+##   <dbl> <chr>              <dbl>  <dbl>
+## 1     1 Coyote Creek      11159.  6934.
+## 2     2 San Francisco Bay 15399.  9568.
+## 3     3 San Pablo Bay     11603.  7210.
+## 4     4 Suisun Bay         7290.  4530.
+```
+
+
+```r
 write_csv(RoadSummary, "Data/Output/SFB_Roads_Summary")
 ```
