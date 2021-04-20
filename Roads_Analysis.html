@@ -379,7 +379,7 @@ SFB.riskregions.z &lt;- &quot;https://github.com/NSF-Microplastics-Project/Risk_
 SFB.riskregions &lt;- IETC::unzipShape(SFB.riskregions.z) # loads GitHub shapefile as an sf object
 
 # Load Summary Table from ArcGIS Export
-RoadSummary &lt;- read_csv(&quot;Data/SFBRoadsSummary_20210420.csv&quot;) %&gt;% # Road length summary from ArcGIS model
+RoadSummary &lt;- read_csv(&quot;Data/ArcGIS_SFBRoadsSummary_20210420.csv&quot;) %&gt;% # Road length summary from ArcGIS model
   rename(len_km = SUM_Shape_Length) %&gt;% # change name of km length column
   mutate(len_mi = len_km*0.621371) # add miles column</code></pre>
 <pre class="r"><code>RoadSummary</code></pre>
@@ -390,6 +390,7 @@ RoadSummary &lt;- read_csv(&quot;Data/SFBRoadsSummary_20210420.csv&quot;) %&gt;%
 ## 2     2 San Francisco Bay 15399.  9568.
 ## 3     3 San Pablo Bay     11603.  7210.
 ## 4     4 Suisun Bay         7290.  4530.</code></pre>
+<pre class="r"><code>write_csv(RoadSummary, &quot;Data/Output/SFB_Roads_Summary&quot;)</code></pre>
 </div>
 
 

@@ -20,11 +20,15 @@ SFB.riskregions.z <- "https://github.com/NSF-Microplastics-Project/Risk_Region.s
 SFB.riskregions <- IETC::unzipShape(SFB.riskregions.z) # loads GitHub shapefile as an sf object
 
 # Load Summary Table from ArcGIS Export
-RoadSummary <- read_csv("Data/SFBRoadsSummary_20210420.csv") %>% # Road length summary from ArcGIS model
+RoadSummary <- read_csv("Data/ArcGIS_SFBRoadsSummary_20210420.csv") %>% # Road length summary from ArcGIS model
   rename(len_km = SUM_Shape_Length) %>% # change name of km length column
   mutate(len_mi = len_km*0.621371) # add miles column
 ```
 
 ```{r}
 RoadSummary
+```
+
+```{r}
+write_csv(RoadSummary, "Data/Output/SFB_Roads_Summary")
 ```
